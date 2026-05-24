@@ -9,7 +9,6 @@ from re import MULTILINE, compile
 from sys import executable, stderr, stdout
 from tempfile import TemporaryDirectory
 from unittest import main, SkipTest
-from pathlib import Path as SyncPath
 
 from yarl import URL
 
@@ -48,7 +47,7 @@ class MainTestCase(AsyncTestCase):
         ret = await super().asyncSetUp()
 
         # Skip integration tests if test data is not available
-        if not SyncPath(str(self._SERVER_DIRECTORY)).is_dir():
+        if not await self._SERVER_DIRECTORY.is_dir():
             raise SkipTest("Test data not available")
 
         ci = getenv("CI") == "true"
@@ -61,7 +60,7 @@ class MainTestCase(AsyncTestCase):
             "--bind",
             str(self._SERVER_URL.host),
             "--directory",
-            str(self._SERVER_DIRECTORY),
+            self._SERVER_DIRECTORY,
             stdin=DEVNULL,
             stdout=stdout if ci else DEVNULL,
             stderr=stderr if ci else DEVNULL,
