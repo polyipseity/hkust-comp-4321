@@ -71,7 +71,8 @@ class MainTestCase(AsyncTestCase):
         return ret
 
     async def asyncTearDown(self) -> None:
-        self._server_process.kill()
+        if hasattr(self, "_server_process"):
+            self._server_process.kill()
         return await super().asyncTearDown()
 
     @classmethod
