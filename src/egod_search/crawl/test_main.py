@@ -8,7 +8,7 @@ from asyncio.subprocess import DEVNULL
 from re import MULTILINE, compile
 from sys import executable, stderr, stdout
 from tempfile import TemporaryDirectory
-from unittest import main
+from unittest import main, skipIf
 
 from yarl import URL
 
@@ -18,6 +18,12 @@ from .main import PARSER_OPTION_DEFAULTS, main as main_main
 
 if __name__ == "__main__":
     main()
+
+
+def _test_data_exists() -> bool:
+    """Check if test data directory exists."""
+    test_dir = Path(__file__).parent / "../../../examples/comp4321-hkust.github.io/testpages/"
+    return test_dir.is_dir()
 
 
 class MainTestCase(AsyncTestCase):
@@ -87,6 +93,7 @@ class MainTestCase(AsyncTestCase):
             f"{datetime.fromtimestamp(0, tz=timezone.utc).isoformat()}, 42", summary
         )
 
+    @skipIf(not _test_data_exists(), "Test data not available")
     async def test_output_summary_30_mp(self):
         with TemporaryDirectory() as tmp_dir:
             summary_path = Path(tmp_dir) / self._SUMMARY_FILENAME
@@ -114,6 +121,7 @@ class MainTestCase(AsyncTestCase):
                 )
             )
 
+    @skipIf(not _test_data_exists(), "Test data not available")
     async def test_output_summary_500_mp(self):
         with TemporaryDirectory() as tmp_dir:
             summary_path = Path(tmp_dir) / self._SUMMARY_FILENAME
