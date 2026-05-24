@@ -1,4 +1,0 @@
-[submodule "examples/comp4321-hkust.github.io"]
-	path = examples/comp4321-hkust.github.io
-	url = https://github.com/comp4321-hkust/comp4321-hkust.github.io.git
-	branch = main
