@@ -44,7 +44,7 @@ def default_config(connection: str):
     Default initialization configuration.
     """
     return {
-        "apps": {APP_NAME: {"default_connection": "default", "models": (__name__,)}},
+        "apps": {APP_NAME: {"default_connection": "default", "models": [__name__]}},
         "connections": {"default": connection},
         "routers": (),
         "timezone": "UTC",
