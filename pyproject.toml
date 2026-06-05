@@ -28,7 +28,7 @@ classifiers = [
 ]
 dependencies = [
 	# "Babel>=2.15.0", # internationalization
-	"aiohttp>=3.9.0", # async request
+	"aiohttp>=3.14.0", # async request
 	"aiohttp-retry>=2.8.0", # `aiohttp` retry
 	"anyio>=4.3.0", # async file
 	"asyncstdlib>=3.12.0", # async utilities
