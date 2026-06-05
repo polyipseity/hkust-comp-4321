@@ -9,7 +9,7 @@ updates:
     directory: "/"
     # Disabled
     ignore:
-      dependency-name: "*"
+      - dependency-name: "*"
     schedule:
       interval: "monthly"
     commit-message:
@@ -32,7 +32,7 @@ updates:
     directory: "/"
     # Disabled
     ignore:
-      dependency-name: "*"
+      - dependency-name: "*"
     schedule:
       interval: "monthly"
     commit-message:
@@ -55,7 +55,7 @@ updates:
     directory: "/"
     # Disabled
     ignore:
-      dependency-name: "*"
+      - dependency-name: "*"
     schedule:
       interval: "monthly"
     commit-message:
